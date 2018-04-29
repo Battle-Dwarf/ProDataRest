@@ -5,22 +5,34 @@ import static io.restassured.RestAssured.*;
 
 public class JSONPlaceholder {
 
-    @Test
-    public void step_1() {
 
+    @Test
+    public void testScenario() {
+
+        /* Step I */
         ArrayList<Integer> userIds =
                 given().
                 when().
-                   get("http://jsonplaceholder.typicode.com/posts").
+                    get("http://jsonplaceholder.typicode.com/posts").
                 then().
                     extract().path("userId");
 
-        Integer max_uderId = Collections.max(userIds);
-        System.out.print(max_uderId);
-    }
+        Integer max_userId = Collections.max(userIds);
+        System.out.print(max_userId + "\n");
 
-    @Test
-    public void step_2() {
+        /* Step II */
+        ArrayList<Integer> ids =
+                given().
+                    pathParam("userId", max_userId).
+                when().
+                    get("http://jsonplaceholder.typicode.com/posts?{userId}").
+                then().
+                    extract().path("id");
+
+        Integer max_Id = Collections.max(ids);
+        System.out.print(max_Id);
+
+        /* Step III */
 
     }
 }
