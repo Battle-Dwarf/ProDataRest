@@ -7,7 +7,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class JSONPlaceholder {
 
-
     @Test
     public void testScenario() {
 
